@@ -6,14 +6,13 @@ class CalgaryGps::Scraper
     doc = Nokogiri::HTML(open(BASE_URL))
     # binding.pry
 
-    doc.css(".doctor-profile").each do |doctor|
+    #first doctor on the list is always an ad.. don't count this.
+    doc.css(".doctor-profile").drop(1).each do |doctor|
       name = doctor.css(".search-item-doctor-name a").text.strip
       profile_url = "https://www.ratemds.com" + doctor.css(".search-item-doctor-name a").attribute('href').value
 
-      CalgaryGps::Doctors.new(name, profile_url)
+      CalgaryGps::Doctor.new(name, profile_url)
     end
-    #TEST TO ENSURE ALL INSTANCES OF DOCTORS CREATED APPRORIATELY
-    CalgaryGps::Doctors.all
   end
 
 end

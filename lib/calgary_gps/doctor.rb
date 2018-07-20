@@ -1,4 +1,4 @@
-class CalgaryGps::Doctors
+class CalgaryGps::Doctor
   attr_accessor :name, :rating, :badges, :profile_url, :bio
 
   @@all = []
