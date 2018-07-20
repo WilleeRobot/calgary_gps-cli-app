@@ -9,10 +9,11 @@ class CalgaryGps::Scraper
     doc.css(".doctor-profile").each do |doctor|
       name = doctor.css(".search-item-doctor-name a").text.strip
       profile_url = "https://www.ratemds.com" + doctor.css(".search-item-doctor-name a").attribute('href').value
-      puts name
-      puts profile_url
-      # binding.pry
+
+      CalgaryGps::Doctors.new(name, profile_url)
     end
+    #TEST TO ENSURE ALL INSTANCES OF DOCTORS CREATED APPRORIATELY
+    CalgaryGps::Doctors.all
   end
 
 end
