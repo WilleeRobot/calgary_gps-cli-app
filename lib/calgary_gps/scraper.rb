@@ -10,8 +10,8 @@ class CalgaryGps::Scraper
     doc.css(".doctor-profile").drop(1).each do |doctor|
       name = doctor.css(".search-item-doctor-name a").text.strip
       profile_url = "https://www.ratemds.com" + doctor.css(".search-item-doctor-name a").attribute('href').value
-
-      CalgaryGps::Doctor.new(name, profile_url)
+      rating = doctor.css(".selected").size
+      CalgaryGps::Doctor.new(name, profile_url, rating)
     end
   end
 

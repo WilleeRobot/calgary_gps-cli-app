@@ -3,9 +3,10 @@ class CalgaryGps::Doctor
 
   @@all = []
 
-  def initialize(name, profile_url)
+  def initialize(name, profile_url, rating)
     @name = name
     @profile_url = profile_url
+    @rating = rating
     @@all << self
   end
 

@@ -3,22 +3,23 @@ class CalgaryGps::CLI
   def run
     puts "Welcome to Calgary GPs!"
 
-    #display docs
+    #Scrape ratemymd for list of docs (first page only)
     CalgaryGps::Scraper.scrape_docs
+
+    #show main menu interface
     main_menu
   end
 
   def main_menu
-    puts "Here are a list of doctors in Calgary that are verified and top rated."
+    puts "Here are a list of verified doctors in Calgary that are accepting patients."
 
     doctors = CalgaryGps::Doctor.all
 
-    n = 1
-
-    doctors.each do |doctor|
-      puts "#{n}. #{doctor.name}"
+    doctors.each_with_index(1) do |doctor, index|
+      puts "#{index}. #{doctor.name}; Rating: #{doctor.rating} stars"
       n += 1
     end
+
 
   end
 
