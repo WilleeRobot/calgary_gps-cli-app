@@ -4,8 +4,12 @@ class CalgaryGps::Scraper
 
   def self.scrape_docs
     doc = Nokogiri::HTML(open(BASE_URL))
-    binding.pry
-    
+
+    doc.css(".doctor-profile").each do |doctor|
+      binding.pry
+    end
+
+
   end
 
 end
