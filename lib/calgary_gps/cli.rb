@@ -15,10 +15,20 @@ class CalgaryGps::CLI
 
     doctors = CalgaryGps::Doctor.all
 
-    doctors.each_with_index(1) do |doctor, index|
-      puts "#{index}. #{doctor.name}; Rating: #{doctor.rating} stars"
-      n += 1
+    doctors.each_with_index do |doctor, index|
+      puts "#{index + 1}. #{doctor.name}; Rating: #{doctor.rating} stars"
     end
+
+    puts ""
+    puts "Select a doctor to view biography and specialty."
+
+    user_input = gets.strip
+    index = user_input.to_i
+
+    doctor = CalgaryGps::Doctor.all[index - 1]
+
+    CalgaryGps::Scraper.scrape_doc_details(doctor)
+
 
 
   end

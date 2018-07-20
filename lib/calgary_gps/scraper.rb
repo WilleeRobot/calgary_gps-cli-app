@@ -15,4 +15,15 @@ class CalgaryGps::Scraper
     end
   end
 
+  def self.scrape_doc_details(doctor)
+
+    url = doctor.profile_url
+
+    doc = Nokogiri::HTML(open(url))
+    #HOW DO YOU SELECT AN NTH-CHILD (p) of a span in nokogiri?
+    
+    binding.pry
+
+  end
+
 end
