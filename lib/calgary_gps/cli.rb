@@ -29,8 +29,6 @@ class CalgaryGps::CLI
 
     CalgaryGps::Scraper.scrape_doc_details(doctor)
 
-
-
   end
 
 

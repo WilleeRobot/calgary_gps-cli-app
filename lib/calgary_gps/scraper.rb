@@ -1,6 +1,6 @@
 class CalgaryGps::Scraper
 
-  BASE_URL = "https://www.ratemds.com/best-doctors/ab/calgary/?verified=true&accepting_patients=true"
+  BASE_URL = "https://www.ratemds.com/best-doctors/ab/calgary/?verified=true"
 
   def self.scrape_docs
     doc = Nokogiri::HTML(open(BASE_URL))
@@ -16,14 +16,20 @@ class CalgaryGps::Scraper
   end
 
   def self.scrape_doc_details(doctor)
+    #RETURN A HASH OF DETAILS
+      #-> :biography -> "text"
+      #-> :accepting new patients -> "text"
+
+    doctor_details = {}
 
     url = doctor.profile_url
-
     doc = Nokogiri::HTML(open(url))
-    #HOW DO YOU SELECT AN NTH-CHILD (p) of a span in nokogiri?
-    
-    binding.pry
 
+    #use adjacent sibling selector to target content below as there isn't a way to specifically target custom attributes.  Query this?
+    doctor_details[:biography] = doc.css(".credentials .text-red + p").text
+    doctor_details[:accepting_patients] = doc.css(".text-blue + p").text
+
+    binding.pry
   end
 
 end
