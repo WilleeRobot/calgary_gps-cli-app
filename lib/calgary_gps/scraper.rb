@@ -4,14 +4,21 @@ class CalgaryGps::Scraper
 
   def self.scrape_docs
     doc = Nokogiri::HTML(open(BASE_URL))
-    # binding.pry
+    array_of_docs = []
+
+
 
     #first doctor on the list is always an ad.. don't count this.
     doc.css(".doctor-profile").drop(1).each do |doctor|
-      name = doctor.css(".search-item-doctor-name a").text.strip
-      profile_url = "https://www.ratemds.com" + doctor.css(".search-item-doctor-name a").attribute('href').value
-      rating = doctor.css(".selected").size
-      CalgaryGps::Doctor.new(name, profile_url, rating)
+      #STORE INTO A HASH
+      doc_profile = {}
+
+      doc_profile[:name] = doctor.css(".search-item-doctor-name a").text.strip
+      doc_profile[:profile_url] = "https://www.ratemds.com" + doctor.css(".search-item-doctor-name a").attribute('href').value
+      doc_profile[:rating] = doctor.css(".selected").size
+
+      #SHOULD BE METAPROGRAMMED IN DOC CLASS....  call self.create_by_scrape
+        # CalgaryGps::Doctor.new(name, profile_url, rating)
     end
   end
 
@@ -29,7 +36,7 @@ class CalgaryGps::Scraper
     doctor_details[:biography] = doc.css(".credentials .text-red + p").text
     doctor_details[:accepting_patients] = doc.css(".text-blue + p").text
 
-    binding.pry
+    doctor_details
   end
 
 end

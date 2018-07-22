@@ -20,7 +20,7 @@ class CalgaryGps::CLI
     end
 
     puts ""
-    puts "Select a doctor to view biography and specialty."
+    puts "Select a doctor to view biography and specialty, or type 'exit' to exit the program."
 
     user_input = gets.strip
     index = user_input.to_i
