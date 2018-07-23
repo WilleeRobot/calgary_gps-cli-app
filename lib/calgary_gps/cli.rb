@@ -25,8 +25,6 @@ class CalgaryGps::CLI
       puts "Thank you for using the program!"
       #how do set a "not" equality operator below?
     elsif ((1..(CalgaryGps::Doctor.all.size)) === index)
-      puts "You selected a doc... what's next is a work in progress..come back later"
-
       selected_doc= CalgaryGps::Doctor.all[array_index]
       get_doctor_details(selected_doc)
 
@@ -60,9 +58,10 @@ class CalgaryGps::CLI
 
   def get_doctor_details(doctor)
     #Scrape for the details of the doctor
-
+    puts "TEST: about to scrape for doctor details"
+    # binding.pry
     #scrape_doc_details expected to return hash...
-    CalgaryGps::Scraper.scrape_doc_details(selected_doc)
+    CalgaryGps::Scraper.scrape_doc_details(doctor)
 
   end
 
