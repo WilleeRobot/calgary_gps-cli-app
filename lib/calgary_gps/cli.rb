@@ -19,8 +19,8 @@ class CalgaryGps::CLI
     #get user input
     user_input = gets.strip
     index = user_input.to_i
-
-    if user_input == "exit"
+    
+    if index == exit_option
       puts "Thank you for using the program!"
       #how do set a "not" equality operator below?
     elsif ((1..(CalgaryGps::Doctor.all.size)) === index)
@@ -50,7 +50,10 @@ class CalgaryGps::CLI
     puts "Here are a list of verified doctors in Calgary that are accepting patients."
 
     CalgaryGps::Doctor.all.each_with_index do |doctor, index|
-      puts "#{index + 1}. #{doctor.name}; Rating: #{doctor.rating} stars"
+      puts "#{index + 1}. #{doctor.name}"
+      puts "   Rating: #{doctor.rating} stars"
+      puts "   Specialty: #{doctor.specialty.name}"
+      puts ""
     end
   end
 

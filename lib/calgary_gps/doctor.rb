@@ -1,3 +1,5 @@
+require 'pry'
+
 class CalgaryGps::Doctor
   attr_accessor :name, :rating, :badges, :profile_url, :bio, :specialty
 
@@ -14,9 +16,8 @@ class CalgaryGps::Doctor
 
   def initialize(doctor_hash)
     doctor_hash.each do |key, value|
-      if key == "specialty"
-          @specialty = CalgaryGps::Specialty.new(value)
-          @specialty.save 
+      if key == :specialty
+        self.send("#{key}=", CalgaryGps::Specialty.new(value))
       else
         self.send(("#{key}="), value)
       end
