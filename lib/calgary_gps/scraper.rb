@@ -16,11 +16,13 @@ class CalgaryGps::Scraper
       doc_profile[:name] = doctor.css(".search-item-doctor-name a").text.strip
       doc_profile[:profile_url] = "https://www.ratemds.com" + doctor.css(".search-item-doctor-name a").attribute('href').value
       doc_profile[:rating] = doctor.css(".selected").size
+      doc_profile[:specialty] = doctor.css(".search-item-specialty a").text
 
+      doc_profile
       #SHOULD BE METAPROGRAMMED IN DOC CLASS....  call self.create_by_scrape
         # CalgaryGps::Doctor.new(name, profile_url, rating)
     end
-  end
+
 
   def self.scrape_doc_details(doctor)
     #RETURN A HASH OF DETAILS
