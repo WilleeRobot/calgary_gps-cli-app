@@ -1,7 +1,9 @@
 require 'pry'
 
 class CalgaryGps::Doctor
-  attr_accessor :name, :rating, :badges, :profile_url, :bio, :specialty
+  attr_accessor :name, :rating, :profile_url, :bio, :specialty
+
+  #:badges - can add this attribute later...
 
   @@all = []
 
@@ -17,6 +19,7 @@ class CalgaryGps::Doctor
   def initialize(doctor_hash)
     doctor_hash.each do |key, value|
       if key == :specialty
+        #specialty is its own object. Doctor has specialty; specialty has many doctors
         self.send("#{key}=", CalgaryGps::Specialty.new(value))
       else
         self.send(("#{key}="), value)

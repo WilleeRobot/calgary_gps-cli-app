@@ -20,7 +20,7 @@ a) Greets user with:
 
     "Please choose an option below: "
       -> 1. List all doctors
-      -> 2. List doctors by star rating - select 0 - 5 stars:
+      -> 2. List doctors by specialty:
       -> 3. Exit
     "Enter an option: "
 
@@ -28,7 +28,7 @@ a) Greets user with:
         --> List doctors by number.
               -> name
                 -> show doctor star rating;
-                -> list doctor badge descriptions;
+                -> specialty;
         --> PROMPT: "Select a doctor to view bio, type 'back' to go back, or type 'exit' to exit.
 
     c) If 2. List doctors by star rating - select 0 - 5 stars: is selected, THEN

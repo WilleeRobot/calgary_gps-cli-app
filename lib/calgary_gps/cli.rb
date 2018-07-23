@@ -19,16 +19,17 @@ class CalgaryGps::CLI
     #get user input
     user_input = gets.strip
     index = user_input.to_i
-    
+    array_index = index - 1
+
     if index == exit_option
       puts "Thank you for using the program!"
       #how do set a "not" equality operator below?
     elsif ((1..(CalgaryGps::Doctor.all.size)) === index)
       puts "You selected a doc... what's next is a work in progress..come back later"
 
-      selected_doc= CalgaryGps::Doctor.all[index - 1]
+      selected_doc= CalgaryGps::Doctor.all[array_index]
+      get_doctor_details(selected_doc)
 
-      # CalgaryGps::Scraper.scrape_doc_details(selected_doc)
     else
       puts "You typed something invalid..."
       main_menu(exit_option)
@@ -55,6 +56,14 @@ class CalgaryGps::CLI
       puts "   Specialty: #{doctor.specialty.name}"
       puts ""
     end
+  end
+
+  def get_doctor_details(doctor)
+    #Scrape for the details of the doctor
+
+    #scrape_doc_details expected to return hash...
+    CalgaryGps::Scraper.scrape_doc_details(selected_doc)
+
   end
 
 end
