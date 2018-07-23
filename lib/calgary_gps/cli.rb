@@ -1,3 +1,5 @@
+require 'pry'
+
 class CalgaryGps::CLI
 
   def run
@@ -33,7 +35,7 @@ class CalgaryGps::CLI
   def list_doctors
     puts "Here are a list of verified doctors in Calgary that are accepting patients."
 
-    doctors.each_with_index do |doctor, index|
+    CalgaryGps::Doctor.all.each_with_index do |doctor, index|
       puts "#{index + 1}. #{doctor.name}; Rating: #{doctor.rating} stars"
     end
 

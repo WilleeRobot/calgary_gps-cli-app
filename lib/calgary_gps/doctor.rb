@@ -13,7 +13,7 @@ class CalgaryGps::Doctor
   #initialize every doctor by forcing it to create only through hashes (metaprammed)
 
   def initialize(doctor_hash)
-    doctor_hash.each{key | value self.send(("#{key}="), value)}
+    doctor_hash.each {|key, value| self.send(("#{key}="), value)}
     @@all << self
   end
 
@@ -30,5 +30,6 @@ class CalgaryGps::Doctor
     @@all
   end
 
+  
 
 end
