@@ -8,6 +8,7 @@ class CalgaryGps::CLI
     list_doctors
     exit_option = CalgaryGps::Doctor.all.size + 1
     puts "#{exit_option}. EXIT PROGRAM"
+
     main_menu(exit_option)
   end
 
@@ -18,7 +19,7 @@ class CalgaryGps::CLI
     #get user input
     user_input = gets.strip
     index = user_input.to_i
-    # binding.pry
+
     if user_input == "exit"
       puts "Thank you for using the program!"
       #how do set a "not" equality operator below?
