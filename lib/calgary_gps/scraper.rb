@@ -38,6 +38,5 @@ class CalgaryGps::Scraper
     doctor_details[:accepting_patients] = doc.css(".text-blue + p").text
 
     doctor_details
-    binding.pry
   end
 end

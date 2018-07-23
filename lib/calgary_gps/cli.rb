@@ -43,6 +43,14 @@ class CalgaryGps::CLI
     #Scrape 'http://ratemymd.com' for list of docs (first page only..maybe I can improve this to get all results later...)
     doctor_hash = CalgaryGps::Scraper.scrape_docs
     CalgaryGps::Doctor.create_from_collection(doctor_hash)
+
+    #Scrape for doctor DETAILS
+    CalgaryGps::Doctor.all.each do |doctor|
+      details_hash = get_doctor_details(doctor)
+      details_hash.each do |key, value|
+        doctor.send("#{key}=", value)
+      end
+    end
   end
 
   def list_doctors
@@ -58,9 +66,6 @@ class CalgaryGps::CLI
 
   def get_doctor_details(doctor)
     #Scrape for the details of the doctor
-    puts "TEST: about to scrape for doctor details"
-    # binding.pry
-    #scrape_doc_details expected to return hash...
     CalgaryGps::Scraper.scrape_doc_details(doctor)
 
   end

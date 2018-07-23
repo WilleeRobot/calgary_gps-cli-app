@@ -1,7 +1,7 @@
 require 'pry'
 
 class CalgaryGps::Doctor
-  attr_accessor :name, :rating, :profile_url, :bio, :specialty
+  attr_accessor :name, :rating, :profile_url, :biography, :specialty, :accepting_patients
 
   #:badges - can add this attribute later...
 
