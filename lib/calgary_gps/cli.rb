@@ -20,8 +20,11 @@ class CalgaryGps::CLI
 
   def main_menu
     puts "To view further details of the list of doctors, enter the corresponding doctor number from the main doctor list."
+    puts ""
     puts "To list all of the doctors by specialty, enter 'list specialties'."
+    puts ""
     puts "To quit, type 'exit'."
+    puts ""
     puts ""
     puts "What would you like to do?"
 
@@ -92,6 +95,7 @@ class CalgaryGps::CLI
     puts ""
 
     continue
+    list_doctors
     main_menu
   end
 
@@ -116,6 +120,7 @@ class CalgaryGps::CLI
     puts ""
 
     continue
+    list_doctors
     main_menu
   end
 end
