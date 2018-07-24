@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["freeWillee"]
   spec.email         = ["will.i.lee@outlook.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{This gem will list doctors verified doctors in Calgary.}
+  spec.description   = %q{User will have the ability to read biography of doctor or whether they are accepting new patients as well view doctors by specialties.}
+  spec.homepage      = "https://github.com/freeWillee/calgary_gps-cli-app"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

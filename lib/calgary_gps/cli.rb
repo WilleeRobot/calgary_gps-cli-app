@@ -1,4 +1,5 @@
 require 'pry'
+require 'io/console'
 
 class CalgaryGps::CLI
 
@@ -45,9 +46,9 @@ class CalgaryGps::CLI
     puts ""
     puts "What would you like to do?"
 
-    action = gets.strip
+    user_input = gets.strip
 
-    case action
+    case user_input
     when "exit"
       "exit"
     when "list doctors"
@@ -57,7 +58,8 @@ class CalgaryGps::CLI
     when "list specialty"
       self.list_doctors_by_specialty
     else
-      puts "You've entered something invalid..."
+      puts "You've entered something invalid... let's try that again."
+      puts ""
       self.main_menu
     end
   end
@@ -117,8 +119,8 @@ class CalgaryGps::CLI
 #press any key to continue prompt
 def continue
   puts "Press any key to go back to the menu."
-  gets
-  print ""
+  STDIN.getch
+  puts ""
 end
 
 end
