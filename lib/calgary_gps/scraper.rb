@@ -22,7 +22,6 @@ class CalgaryGps::Scraper
     array_of_docs
   end
 
-
   def self.scrape_doc_details(doctor)
     #RETURN A HASH OF DETAILS
       #-> :biography -> "text"
