@@ -1,7 +1,7 @@
 #environment file
 
 module CalgaryGps
-  # Your code goes here...
+  
 end
 
 require 'nokogiri'

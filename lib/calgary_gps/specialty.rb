@@ -7,9 +7,6 @@ class CalgaryGps::Specialty
     @name = name
     #to track all doctors in specialty
     @doctors = []
-  end
-
-  def save
     @@all << self
   end
 

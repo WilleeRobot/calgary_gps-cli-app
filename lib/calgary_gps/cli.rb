@@ -13,36 +13,15 @@ class CalgaryGps::CLI
     main_menu
   end
 
-  # def main_menu
-  #   puts ""
-  #
-  #   #get user input
-  #   user_input = gets.strip
-  #   index = user_input.to_i
-  #
-  #   if index == exit_option
-  #     puts "Thank you for using the program!"
-  #     #how do set a "not" equality operator below?
-  #   elsif ((1..(CalgaryGps::Doctor.all.size)) === index)
-  #     array_index = index - 1
-  #     selected_doc= CalgaryGps::Doctor.all[array_index]
-  #     show_doctor_details(selected_doc)
-  #   else
-  #     puts "You typed something invalid..."
-  #     main_menu(exit_option)
-  #   end
-  # end
-
   def welcome_screen
     puts "Welcome to Calgary GPs!"
     puts ""
   end
 
   def main_menu
-
     puts "To view further details of the list of doctors, enter the corresponding doctor number from the main doctor list."
-    puts "To list all of the specialties, enter 'list specialties'."
-    puts "To list all of the doctors of a particular specialty, enter 'list specialty'."
+    puts "To list all of the doctors by specialty, enter 'list specialties'."
+    # puts "To list all of the doctors of a particular specialty, enter 'list specialty'."
     puts "To quit, type 'exit'."
     puts ""
     puts "What would you like to do?"
@@ -59,8 +38,8 @@ class CalgaryGps::CLI
         "exit"
       when "list specialties"
         self.list_specialties
-      when "list specialty"
-        self.list_doctors_by_specialty
+      # when "list specialty"
+      #   self.list_doctors_by_specialty
       else
         puts "You've entered something invalid... let's try that again."
         puts ""
@@ -81,9 +60,6 @@ class CalgaryGps::CLI
     puts "Loading details for the doctors.  Please wait..."
 
     # #Scrape for the details of the doctor
-    # CalgaryGps::Scraper.scrape_doc_details(doctor)
-
-    #Scrape for doctor DETAILS
     CalgaryGps::Doctor.all.each do |doctor|
       details_hash = CalgaryGps::Scraper.scrape_doc_details(doctor)
       details_hash.each do |key, value|
@@ -128,18 +104,30 @@ class CalgaryGps::CLI
   end
 
   def list_specialties
-    puts "Here are a list of the specialties available:"
-    
+    puts "Here are a list of doctors by specialty:"
+
     CalgaryGps::Specialty.all.each_with_index do |specialty, index|
       puts "#{index + 1}. #{specialty.name}"
+      specialty.doctors.each_with_index do |doctor, index|
+        puts "  #{index + 1}. #{doctor.name}"
+      end
     end
+
     continue
     main_menu
   end
 
-  def list_doctors_by_specialty
-    continue
-    main_menu
-  end
+  # def list_doctors_by_specialty
+  #   puts "Here are a list of doctors by specialty: "
+  #
+  #   CalgaryGps::Specialty.all.each_with_index do |specialty, index|
+  #     puts "#{index + 1}. #{specialty.name}"
+  #
+  #   end
+  #
+  #   puts ""
+  #   continue
+  #   main_menu
+  # end
 
 end
