@@ -31,9 +31,7 @@ class CalgaryGps::Doctor
   #CLASS METHODS
 
   def self.create_from_collection(doctor_array)
-    #EXAMPLE OF ARRAY OUTPUT
-
-    doctor_array.each do |hash|
+      doctor_array.each do |hash|
       CalgaryGps::Doctor.new(hash)
     end
   end

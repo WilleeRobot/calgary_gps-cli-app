@@ -21,7 +21,6 @@ class CalgaryGps::CLI
   def main_menu
     puts "To view further details of the list of doctors, enter the corresponding doctor number from the main doctor list."
     puts "To list all of the doctors by specialty, enter 'list specialties'."
-    # puts "To list all of the doctors of a particular specialty, enter 'list specialty'."
     puts "To quit, type 'exit'."
     puts ""
     puts "What would you like to do?"
@@ -71,7 +70,7 @@ class CalgaryGps::CLI
   end
 
   def list_doctors
-    puts "Here are a list of Calgary's general practitioners: "
+    puts "Here is a sample list of Calgary's medical practitioners: "
     puts ""
 
     CalgaryGps::Doctor.all.each_with_index do |doctor, index|
@@ -105,6 +104,7 @@ class CalgaryGps::CLI
 
   def list_specialties
     puts "Here are a list of doctors by specialty:"
+    puts ""
 
     CalgaryGps::Specialty.all.each_with_index do |specialty, index|
       puts "#{index + 1}. #{specialty.name}"
@@ -113,21 +113,9 @@ class CalgaryGps::CLI
       end
     end
 
+    puts ""
+
     continue
     main_menu
   end
-
-  # def list_doctors_by_specialty
-  #   puts "Here are a list of doctors by specialty: "
-  #
-  #   CalgaryGps::Specialty.all.each_with_index do |specialty, index|
-  #     puts "#{index + 1}. #{specialty.name}"
-  #
-  #   end
-  #
-  #   puts ""
-  #   continue
-  #   main_menu
-  # end
-
 end
