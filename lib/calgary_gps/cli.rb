@@ -9,28 +9,29 @@ class CalgaryGps::CLI
     make_doctors
     get_doctor_details
 
+    list_doctors
     main_menu
   end
 
-  def main_menu
-    puts ""
-
-    #get user input
-    user_input = gets.strip
-    index = user_input.to_i
-
-    if index == exit_option
-      puts "Thank you for using the program!"
-      #how do set a "not" equality operator below?
-    elsif ((1..(CalgaryGps::Doctor.all.size)) === index)
-      array_index = index - 1
-      selected_doc= CalgaryGps::Doctor.all[array_index]
-      show_doctor_details(selected_doc)
-    else
-      puts "You typed something invalid..."
-      main_menu(exit_option)
-    end
-  end
+  # def main_menu
+  #   puts ""
+  #
+  #   #get user input
+  #   user_input = gets.strip
+  #   index = user_input.to_i
+  #
+  #   if index == exit_option
+  #     puts "Thank you for using the program!"
+  #     #how do set a "not" equality operator below?
+  #   elsif ((1..(CalgaryGps::Doctor.all.size)) === index)
+  #     array_index = index - 1
+  #     selected_doc= CalgaryGps::Doctor.all[array_index]
+  #     show_doctor_details(selected_doc)
+  #   else
+  #     puts "You typed something invalid..."
+  #     main_menu(exit_option)
+  #   end
+  # end
 
   def welcome_screen
     puts "Welcome to Calgary GPs!"
@@ -38,7 +39,7 @@ class CalgaryGps::CLI
   end
 
   def main_menu
-    puts "To list all doctors, enter 'list doctors'."
+
     puts "To view further details of the list of doctors, enter the corresponding doctor number from the main doctor list."
     puts "To list all of the specialties, enter 'list specialties'."
     puts "To list all of the doctors of a particular specialty, enter 'list specialty'."
@@ -48,19 +49,23 @@ class CalgaryGps::CLI
 
     user_input = gets.strip
 
-    case user_input
-    when "exit"
-      "exit"
-    when "list doctors"
-      self.list_doctors
-    when "list specialties"
-      self.list_specialties
-    when "list specialty"
-      self.list_doctors_by_specialty
+    if ((1..(CalgaryGps::Doctor.all.size)) === user_input.to_i)
+      array_index = user_input.to_i - 1
+      selected_doc= CalgaryGps::Doctor.all[array_index]
+      show_doctor_details(selected_doc)
     else
-      puts "You've entered something invalid... let's try that again."
-      puts ""
-      self.main_menu
+      case user_input
+      when "exit"
+        "exit"
+      when "list specialties"
+        self.list_specialties
+      when "list specialty"
+        self.list_doctors_by_specialty
+      else
+        puts "You've entered something invalid... let's try that again."
+        puts ""
+        self.main_menu
+      end
     end
   end
 
@@ -90,7 +95,8 @@ class CalgaryGps::CLI
   end
 
   def list_doctors
-    puts "Here are a list of verified doctors in Calgary that are accepting patients."
+    puts "Here are a list of Calgary's general practitioners: "
+    puts ""
 
     CalgaryGps::Doctor.all.each_with_index do |doctor, index|
       puts "#{index + 1}. #{doctor.name}"
@@ -98,11 +104,6 @@ class CalgaryGps::CLI
       puts "   Specialty: #{doctor.specialty.name}"
       puts ""
     end
-    # exit_option = CalgaryGps::Doctor.all.size + 1
-    # puts "#{exit_option}. MAIN MENU"
-
-    self.continue
-    self.main_menu
   end
 
   def show_doctor_details(doctor)
@@ -114,13 +115,31 @@ class CalgaryGps::CLI
     puts "Accepting patients: "
     puts doctor.accepting_patients
     puts ""
+
+    continue
+    main_menu
   end
 
-#press any key to continue prompt
-def continue
-  puts "Press any key to go back to the menu."
-  STDIN.getch
-  puts ""
-end
+  #press any key to continue prompt
+  def continue
+    puts "Press any key to go back to the menu."
+    STDIN.getch
+    puts ""
+  end
+
+  def list_specialties
+    puts "Here are a list of the specialties available:"
+    
+    CalgaryGps::Specialty.all.each_with_index do |specialty, index|
+      puts "#{index + 1}. #{specialty.name}"
+    end
+    continue
+    main_menu
+  end
+
+  def list_doctors_by_specialty
+    continue
+    main_menu
+  end
 
 end

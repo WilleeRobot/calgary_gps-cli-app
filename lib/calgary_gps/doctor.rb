@@ -21,6 +21,11 @@ class CalgaryGps::Doctor
       if key == :specialty
         #specialty is its own object. Doctor has specialty; specialty has many doctors
         self.send("#{key}=", CalgaryGps::Specialty.new(value))
+        if CalgaryGps::Specialty.all.none? {|specialty| specialty.name == self.specialty.name}
+          self.specialty.save
+        end
+        self.specialty.doctors << self
+        # binding.pry
       else
         self.send(("#{key}="), value)
       end
