@@ -30,13 +30,11 @@ Or install it yourself as:
 When running the executable file (./bin/calgary_gps), the program will take some time to grab a list of doctors and associated details and list them by number.
 
 LIST DOCTORS:
-
 1. To view details of a particular doctor, select the number corresponding to the doctor you wish to view further details about.
 2. The prompt will then show the selected doctor's biography and whether he or she is accepting new patients.
 3. To go back to the main menu, hit any key
 
 LIST SPECIALTIES:
-
 1. To view a list of doctors sorted and categorized by a particular specialty, type 'list specialities'.
 2. The prompt will then show all of the specialities on the particular page that was scraped and list the doctors belonging to that specialty.
 3. To go back to the main menu, hit any key
@@ -55,14 +53,13 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 Bug reports and pull requests are welcome on GitHub at https://github.com/freeWillee/calgary_gps. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 TO SUBMIT PULL REQUEST:
-
 1) Fork and clone the repo: git clone git@github.com:freeWillee/calgary_gps-cli-app.git
 2) Setup machine by running: ./bin/setup
 3) Make changes
 4) Add tests for changes if possible
 5) Push to your local fork and submit pull request: https://github.com/freeWillee/calgary_gps-cli-app/pulls
 
-** Please allow for at least 3 business days before receiving a response.  Please write tests for changes and write good commit messages."
+** Please allow for at least 3 business days before receiving a response.  Please write tests for changes and write good commit messages.**
 
 ## License
 
