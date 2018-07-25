@@ -1,7 +1,7 @@
 # CalgaryGps
 
 This gem utilizes the popular web-scraping ruby gem NOKOGIRI to obtain certain professional details of medical doctors in Calgary, AB, Canada.
-It will list doctors and provide his or her name, specialty, and rating out of 5 based on users of https://ratemymd.com.
+It will list doctors and provide his or her name, specialty, and rating out of 5 based on users of https://www.ratemds.com
 
 Users can then drill into any one particular doctor to view his or her biography, if available, and whether or not the doctor is accepting new patients (if this detail is provided.)
 
