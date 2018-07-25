@@ -10,15 +10,17 @@ class CalgaryGps::Doctor
   def initialize(doctor_hash)
 
     doctor_hash.each do |key, value|
-      if key == :specialty
-        #specialty is its own object. Doctor has specialty; specialty has many doctors
 
+      #specialty is its own object. Doctor has specialty; specialty has many doctors
+      if key == :specialty
+        # Only create the specialty if it doesn't already exist
         if CalgaryGps::Specialty.all.none? {|specialty| specialty.name == value}
           self.send("#{key}=", CalgaryGps::Specialty.new(value))
         else
-
           self.send("#{key}=", CalgaryGps::Specialty.all.detect{|specialty| specialty.name == value})
         end
+
+        # specialty must know that the doctor belongs to it.
         self.specialty.doctors << self
       else
         self.send("#{key}=", value)

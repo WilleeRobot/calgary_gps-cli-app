@@ -4,11 +4,14 @@ require 'io/console'
 class CalgaryGps::CLI
 
   def run
+    #welcome
     welcome_screen
 
+    #make doctors from the webpage; load details into doc attributes
     make_doctors
-    get_doctor_details
+    get_doctor_details  # => Think about only getting details if user wants to see details (saves time -- see method detail below)
 
+    #show list of docs (summary view only) and prompt for user input.
     list_doctors
     main_menu
   end
@@ -30,18 +33,18 @@ class CalgaryGps::CLI
 
     user_input = gets.strip
 
+    #show doctor details if user input is between 1 and # of doctors listed (i.e. the @@all - all docs)
     if ((1..(CalgaryGps::Doctor.all.size)) === user_input.to_i)
       array_index = user_input.to_i - 1
       selected_doc= CalgaryGps::Doctor.all[array_index]
       show_doctor_details(selected_doc)
     else
+      # cover all other user input possibilities
       case user_input
       when "exit"
         "exit"
       when "list specialties"
         self.list_specialties
-      # when "list specialty"
-      #   self.list_doctors_by_specialty
       else
         puts "You've entered something invalid... let's try that again."
         puts ""
@@ -61,7 +64,8 @@ class CalgaryGps::CLI
   def get_doctor_details
     puts "Loading details for the doctors.  Please wait..."
 
-    # #Scrape for the details of the doctor
+    #Scrape for the details of the doctor;
+      # => Consider only running this method only if user selects a doctor - save time and memory?
     CalgaryGps::Doctor.all.each do |doctor|
       details_hash = CalgaryGps::Scraper.scrape_doc_details(doctor)
       details_hash.each do |key, value|
