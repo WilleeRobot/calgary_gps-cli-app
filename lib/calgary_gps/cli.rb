@@ -2,7 +2,6 @@ require 'pry'
 require 'io/console'
 
 class CalgaryGps::CLI
-
   def run
     #welcome
     welcome_screen

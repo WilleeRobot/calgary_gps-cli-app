@@ -23,6 +23,7 @@ class CalgaryGps::Doctor
         # specialty must know that the doctor belongs to it.
         self.specialty.doctors << self
       else
+        #add all other doctor attributes
         self.send("#{key}=", value)
       end
     end

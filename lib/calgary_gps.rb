@@ -1,9 +1,5 @@
 #environment file
 
-module CalgaryGps
-  
-end
-
 require 'nokogiri'
 require 'open-uri'
 require 'pry'
