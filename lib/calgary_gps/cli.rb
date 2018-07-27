@@ -5,12 +5,8 @@ class CalgaryGps::CLI
   def run
     #welcome
     welcome_screen
-
-    #make doctors from the webpage; load details into doc attributes
     make_doctors
-    get_doctor_details  # => Think about only getting details if user wants to see details (saves time -- see method detail below)
-
-    #show list of docs (summary view only) and prompt for user input.
+    get_doctor_details
     list_doctors
     main_menu
   end
@@ -54,7 +50,7 @@ class CalgaryGps::CLI
 
   def make_doctors
     puts "Loading doctors.  Please wait..."
-    #Scrape 'http://ratemymd.com' for list of docs (first page only..maybe I can improve this to get all results later...)
+    #Scrape 'http://ratemds.com' for list of docs (first page only..maybe I can improve this to get all results later...)
     doctor_hash = CalgaryGps::Scraper.scrape_docs
     CalgaryGps::Doctor.create_from_collection(doctor_hash)
     puts "Done!"
