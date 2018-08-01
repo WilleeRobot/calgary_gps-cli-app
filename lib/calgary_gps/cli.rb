@@ -1,6 +1,8 @@
 require 'pry'
 require 'io/console'
 
+#REFACTOR
+
 class CalgaryGps::CLI
   def run
     #welcome
@@ -29,9 +31,11 @@ class CalgaryGps::CLI
     user_input = gets.strip
 
     #show doctor details if user input is between 1 and # of doctors listed (i.e. the @@all - all docs)
-    if ((1..(CalgaryGps::Doctor.all.size)) === user_input.to_i)
+
+
+    if ((1..(@all_doctors.size)) === user_input.to_i)
       array_index = user_input.to_i - 1
-      selected_doc= CalgaryGps::Doctor.all[array_index]
+      selected_doc= @all_doctors[array_index]
       show_doctor_details(selected_doc)
     else
       # cover all other user input possibilities
@@ -53,6 +57,7 @@ class CalgaryGps::CLI
     #Scrape 'http://ratemds.com' for list of docs (first page only..maybe I can improve this to get all results later...)
     doctor_hash = CalgaryGps::Scraper.scrape_docs
     CalgaryGps::Doctor.create_from_collection(doctor_hash)
+    @all_doctors = CalgaryGps::Doctor.all
     puts "Done!"
   end
 
@@ -61,7 +66,7 @@ class CalgaryGps::CLI
 
     #Scrape for the details of the doctor;
       # => Consider only running this method only if user selects a doctor - save time and memory?
-    CalgaryGps::Doctor.all.each do |doctor|
+      @all_doctors.each do |doctor|
       details_hash = CalgaryGps::Scraper.scrape_doc_details(doctor)
       details_hash.each do |key, value|
         doctor.send("#{key}=", value)
